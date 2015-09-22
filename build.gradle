@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+    }
+}
+
+subprojects {
+    ext {
+        //kotlinVersion = '0.1-SNAPSHOT'
+        kotlinVersion = '1.0.0-beta-3595'
+        autoFactoryVersion = '1.0-beta3'
+        daggerVersion = '2.0.2'
+        jsr250ApiVersion = '1.0'
+    }
+
+    buildscript {
+        repositories {
+            jcenter()
+            //mavenLocal()
+            maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
+            //maven { url "https://plugins.gradle.org/m2/" }
+        }
+        dependencies {
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+            //classpath "net.ltgt.gradle:gradle-apt-plugin:0.5"
+        }
+    }
+
+    repositories {
+        jcenter()
+        //mavenLocal()
+        maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
+    }
+}
+
+apply plugin: 'java' // ensure clean is also triggered for root build folder
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
